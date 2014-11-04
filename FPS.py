@@ -45,7 +45,7 @@ if os.name == 'nt':
 else:
     DEVICE_NAME = '/dev/cu.usbserial-A601EQ14'  #default device to use
 
-def isFingerPrintConnected():
+def isFingerPrintConnected(is_com=True):
     '''
         Detect if the fingerprint device is present in the device list
     '''
@@ -271,12 +271,14 @@ class SerialCommander:
         bytearr.append(char_readed)
         return bytearr
 
-def connect(baud=None):
+def connect(device_name=None,baud=None,timeout=None,is_com=True):
     _ser = None
     if baud is None:
         baud=9600
-    if isFingerPrintConnected():
-        _ser = serial.Serial(DEVICE_NAME,baudrate=baud,timeout=10000)
+    if timeout = None
+        timeout = 10000
+    if isFingerPrintConnected(is_com):
+        _ser = serial.Serial(DEVICE_NAME,baudrate=baud,timeout=timeout)
         if not _ser.isOpen():
             _ser.open()
     return _ser
@@ -287,17 +289,23 @@ BAUD = 9600
 class FPS_GT511C3(SerialCommander):
     _serial = None
     _lastResponse = None
+    _device_name = None
+    _baud = None
+    _timeout= None
     
     '''
     # Enables verbose debug output using hardware Serial 
     '''
     UseSerialDebug = True
     
-    def __init__(self):
+    def __init__(self,device_name=None,baud=None,timeout=None):
         '''
             Creates a new object to interface with the fingerprint scanner
         '''
-        self._serial = connect()
+        _device_name = device_name
+        _baud=baud
+        _timeout = timeout
+        self._serial = connect(device_name,baud,timeout)
         if not self._serial is None:
             delay(0.1)
             self.Open()
@@ -377,7 +385,7 @@ class FPS_GT511C3(SerialCommander):
                     print 'Changing port baudrate'
                 self._serial.close()
                 BAUD = baud
-                self._serial = connect(BAUD)
+                self._serial = connect(self._device_name,self._baud,self._timeout)
             del rp
             del packetbytes
         return retval

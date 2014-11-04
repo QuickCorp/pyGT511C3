@@ -47,9 +47,9 @@ else:
 
 def isFingerPrintConnected(is_com=True):
     '''
-        Detect if the fingerprint device is present in the device list
+        Detect if the fingerprint device is present in the device list, only for com ports
     '''
-    return True if devices().__contains__(DEVICE_NAME) else False
+    return True if (not is_com) or devices().__contains__(DEVICE_NAME) else False
 
 
 class Packet:
@@ -298,14 +298,14 @@ class FPS_GT511C3(SerialCommander):
     '''
     UseSerialDebug = True
     
-    def __init__(self,device_name=None,baud=None,timeout=None):
+    def __init__(self,device_name=None,baud=None,timeout=None,is_com=True):
         '''
             Creates a new object to interface with the fingerprint scanner
         '''
         _device_name = device_name
         _baud=baud
         _timeout = timeout
-        self._serial = connect(device_name,baud,timeout)
+        self._serial = connect(device_name,baud,timeout,is_com=True)
         if not self._serial is None:
             delay(0.1)
             self.Open()

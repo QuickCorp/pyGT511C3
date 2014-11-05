@@ -753,7 +753,7 @@ class FPS_GT511C3(SerialCommander):
                 print repr(bytes(cmd))[1:-1]
         else:
             if self.UseSerialDebug:
-                print 'No es posible escribir en %s' % self._device_name
+                print '[SendCommand] No es posible escribir en %s' % self._device_name
     
     def GetResponse(self):
         '''
@@ -763,7 +763,7 @@ class FPS_GT511C3(SerialCommander):
         delay(interval)
         if self._serial is None:
             rp = Response_Packet()
-            print 'No es posible leer desde: %s' % DEVICE_NAME
+            print '[GetResponse] No es posible leer desde: %s' % self._device_name
         else:
             r = bytearray(self._serial.read(self._serial.inWaiting()))
             rp = Response_Packet(r,self.UseSerialDebug)

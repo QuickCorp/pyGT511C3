@@ -278,7 +278,7 @@ def connect(device_name=None,baud=None,timeout=None,is_com=True):
     if timeout is None:
         timeout = 10000
     if isFingerPrintConnected(is_com):
-        _ser = serial.Serial(DEVICE_NAME,baudrate=baud,timeout=timeout)
+        _ser = serial.Serial(device_name,baudrate=baud,timeout=timeout)
         if not _ser.isOpen():
             _ser.open()
     return _ser
@@ -749,7 +749,7 @@ class FPS_GT511C3(SerialCommander):
                 print repr(bytes(cmd))[1:-1]
         else:
             if self.UseSerialDebug:
-                print 'No es posible escribir en %s' % DEVICE_NAME
+                print 'No es posible escribir en %s' % self._device_name
     
     def GetResponse(self):
         '''

@@ -25,16 +25,21 @@ Connect the Ground pin of fingerprint GT511C3 to ground pin in GPIO
 This may be works fine, if don't, try to change the fingerprint baud rate with baud_to_115200.py sample code
 
 
+This script Enrolls your finger in the device internal database 
+you have 200 ids avalilables for enroll
+Each time you executes this enroll script, enrollid is autoincrement for a free number
+
 '''
 import FPS, sys
 
-def Enroll():
+def LegacyEnroll():
     '''
     Enroll test
     '''
     
     enrollid=0
     okid=False
+    #search for a free enrollid, you have max 200
     while not okid and enrollid < 200:
         okid = fps.CheckEnrolled(enrollid)
         if not okid:
@@ -83,7 +88,7 @@ def Enroll():
         print 'Failed: enroll storage is full'
 
 if __name__ == '__main__':
-    fps = FPS.FPS_GT511C3()
+    FPS.FPS_GT511C3(device_name='/dev/ttyAMA0',baud=9600,timeout=2,is_com=False) #settings for raspberry pi GPIO
     fps.Open()
     if fps.SetLED(True):
-        Enroll()
+        LegacyEnroll()

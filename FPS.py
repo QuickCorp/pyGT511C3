@@ -306,13 +306,16 @@ class FPS_GT511C3(SerialCommander):
         '''
             Creates a new object to interface with the fingerprint scanner
         '''
-        _device_name = device_name
-        _baud=baud
-        _timeout = timeout
+        self._device_name = device_name
+        self._baud=baud
+        self._timeout = timeout
         self._serial = connect(device_name,baud,timeout,is_com=True)
         if not self._serial is None:
             delay(0.1)
             self.Open()
+        elif self.UseSerialDebug:
+            print '[FPS_GT511C3] No es posible conectar con el dispositivo %s' % self._device_name
+            
      
     def Open(self):
         '''

@@ -273,6 +273,10 @@ class SerialCommander:
 
 def connect(device_name=None,baud=None,timeout=None,is_com=True):
     _ser = None
+    if device_name is None:
+        device_name = DEVICE_NAME
+    else:
+        DEVICE_NAME = device_name
     if baud is None:
         baud=9600
     if timeout is None:

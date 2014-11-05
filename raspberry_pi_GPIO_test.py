@@ -41,7 +41,7 @@ if __name__ == '__main__':
             fps.SetLED(False) # Turns OFF the CMOS LED
             break
         else:
-            delay(1) #wait 1 second
+            FPS.delay(1) #wait 1 second
             counter = counter + 1
     
     fps.Close() # Closes serial connection

@@ -282,9 +282,13 @@ def connect(device_name=None,baud=None,timeout=None,is_com=True):
     if timeout is None:
         timeout = 10000
     if isFingerPrintConnected(is_com):
-        _ser = serial.Serial(device_name,baudrate=baud,timeout=timeout)
-        if not _ser.isOpen():
-            _ser.open()
+        try:
+            _ser = serial.Serial(device_name,baudrate=baud,timeout=timeout)
+            if not _ser.isOpen():
+                _ser.open()
+        except Exception,e:
+            print '[Connect] No es posible conectar al dispositivo %s' % (str(e))
+            pass
     return _ser
 
 #BAUD = 115200
@@ -309,7 +313,7 @@ class FPS_GT511C3(SerialCommander):
         self._device_name = device_name
         self._baud=baud
         self._timeout = timeout
-        self._serial = connect(device_name,baud,timeout,is_com=True)
+        self._serial = connect(device_name,baud,timeout,is_com=is_com)
         if not self._serial is None:
             delay(0.1)
             self.Open()

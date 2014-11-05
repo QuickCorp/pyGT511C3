@@ -275,7 +275,7 @@ def connect(device_name=None,baud=None,timeout=None,is_com=True):
     _ser = None
     if baud is None:
         baud=9600
-    if timeout = None:
+    if timeout is None:
         timeout = 10000
     if isFingerPrintConnected(is_com):
         _ser = serial.Serial(DEVICE_NAME,baudrate=baud,timeout=timeout)

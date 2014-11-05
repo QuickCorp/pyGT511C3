@@ -38,6 +38,7 @@ if __name__ == '__main__':
     while counter < 10:
         if fps.IsPressFinger():  #verify if the finger is in the scan
             print 'Your finger is in the scan'
+            fps.SetLED(False) # Turns OFF the CMOS LED
             break
         else:
             delay(1) #wait 1 second

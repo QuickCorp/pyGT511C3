@@ -29,7 +29,7 @@ This may be works fine, if don't, try to change the fingerprint baud rate with b
 import FPS, sys
 
 if __name__ == '__main__':
-    fps =  FPS.FPS_GT511C3(device_name='/dev/ttyAMA0',baud=9600,timeout=2)
+    fps =  FPS.FPS_GT511C3(device_name='/dev/ttyAMA0',baud=9600,timeout=2,is_com=False)
     fps.UseSerialDebug = True
     fps.SetLED(True) # Turns ON the CMOS LED
     fps.delay(1) # wait 1 second

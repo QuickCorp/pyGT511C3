@@ -32,7 +32,7 @@ Each time you executes this enroll script, enrollid is autoincrement for a free 
 '''
 import FPS, sys
 
-def LegacyEnroll():
+def LegacyEnroll(fps):
     '''
     Enroll test
     '''
@@ -88,7 +88,7 @@ def LegacyEnroll():
         print 'Failed: enroll storage is full'
 
 if __name__ == '__main__':
-    FPS.FPS_GT511C3(device_name='/dev/ttyAMA0',baud=9600,timeout=2,is_com=False) #settings for raspberry pi GPIO
+    fps = FPS.FPS_GT511C3(device_name='/dev/ttyAMA0',baud=9600,timeout=2,is_com=False) #settings for raspberry pi GPIO
     fps.Open()
     if fps.SetLED(True):
-        LegacyEnroll()
+        LegacyEnroll(fps)

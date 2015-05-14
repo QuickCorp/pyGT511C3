@@ -22,3 +22,5 @@ https://www.sparkfun.com/products/9873
 Now supports Raspberry PI GPIO port '/dev/ttyAMA0' too!
 
 If you have any comments or contribution code for this project you are welcome!
+
+NOTE: Please read the LICENSE.txt before to use the code

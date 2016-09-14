@@ -9,7 +9,7 @@ import serial
 from serial.tools import list_ports
 import time
 import binascii
-
+MAX_FINGER=200
 def delay(seconds):
     '''
     wait a number of secons 
@@ -481,7 +481,7 @@ class FPS_GT511C3(SerialCommander):
         del packetbytes
         rp = self.GetResponse()
         retval = rp.IntFromParameter()
-        retval = 3 if retval < 200 else 0
+        retval = 3 if retval < MAX_FINGER else 0
         if not rp.ACK:
             if rp.Error == rp.errors['NACK_ENROLL_FAILED']:
                 retval = 1
@@ -505,7 +505,7 @@ class FPS_GT511C3(SerialCommander):
         del packetbytes
         rp = self.GetResponse()
         retval = rp.IntFromParameter()
-        retval = 3 if retval < 200 else 0
+        retval = 3 if retval < MAX_FINGER else 0
         if not rp.ACK:
             if rp.Error == rp.errors['NACK_ENROLL_FAILED']:
                 retval = 1
@@ -531,7 +531,7 @@ class FPS_GT511C3(SerialCommander):
         del packetbytes
         rp = self.GetResponse()
         retval = rp.IntFromParameter()
-        retval = 3 if retval < 200 else 0
+        retval = 3 if retval < MAX_FINGER else 0
         if not rp.ACK:
             if rp.Error == rp.errors['NACK_ENROLL_FAILED']:
                 retval = 1
@@ -630,8 +630,8 @@ class FPS_GT511C3(SerialCommander):
         self.SendCommand(packetbytes, 12)
         rp = self.GetResponse()
         retval = rp.IntFromParameter()
-        if retval > 200:
-            retval = 200
+        if retval > MAX_FINGER:
+            retval = MAX_FINGER
         del rp
         del packetbytes
         del cp

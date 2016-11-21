@@ -24,3 +24,7 @@ Now supports Raspberry PI GPIO port '/dev/ttyAMA0' too!
 If you have any comments or contribution code for this project you are welcome!
 
 NOTE: Please read the LICENSE.txt before to use the code
+
+This driver has a paid support via Skype. You just need to donate USD 100 on the link bellow once, and you will get all the online support needed to make your implementation works fine:
+
+https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=Q4L8KWJTYL5NY

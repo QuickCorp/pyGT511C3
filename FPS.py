@@ -383,7 +383,7 @@ class FPS_GT511C3(SerialCommander):
              NOTE: Untested (don't have a logic level changer and a voltage divider is too slow)
         '''
         retval = False
-        if baud <> self._serial.getBaudrate():
+        if baud :
             cp = Command_Packet('ChangeBaudrate',UseSerialDebug=self.UseSerialDebug)
             cp.ParameterFromInt(baud)
             packetbytes = cp.GetPacketBytes()
